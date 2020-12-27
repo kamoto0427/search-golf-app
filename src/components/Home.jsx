@@ -7,6 +7,7 @@ import ja from 'date-fns/locale/ja';
 
 import "react-datepicker/dist/react-datepicker.css"
 import addDays from 'date-fns/addDays';
+import format from 'date-fns/format';
 
 const Today = new Date();
 registerLocale('ja',ja);
