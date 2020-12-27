@@ -6,12 +6,19 @@ import DatePicker, { registerLocale } from "react-datepicker"
 import ja from 'date-fns/locale/ja';
 
 import "react-datepicker/dist/react-datepicker.css"
+import addDays from 'date-fns/addDays';
 
 const Today = new Date();
 registerLocale('ja',ja);
 
 class Home extends React.Component {
+  state = { date: addDays(new Date(), 14), budget: '12000', departure: '1', duration: '90' }
   render() {
+    {console.log(this.state.date)}
+    {console.log(this.state.budget)}
+    {console.log(this.state.departure)}
+    {console.log(this.state.duration)}
+
     return (
       <div className="ui container" id="container">
         <div className="Search__Form">
@@ -21,13 +28,14 @@ class Home extends React.Component {
               <DatePicker
                 dateFormat="yyyy/MM/dd"
                 locale='ja'
-                selected={Today}
+                selected={this.state.date}
+                onChange={e => this.setState({date:e})}
                 minDate={Today}
               />
             </div>
             <div className="field">
               <label><i className="yen sign icon"></i>上限金額</label>
-              <select className="ui dropdown" name="dropdown">
+              <select className="ui dropdown" name="dropdown" value={this.state.duration} onChange={e => this.setState({ duration: e.target.value })}>
                 <option value="8000">8,000円</option>
                 <option value="12000">12,000円</option>
                 <option value="16000">16,000円</option>
